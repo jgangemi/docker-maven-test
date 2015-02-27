@@ -1,0 +1,46 @@
+<project
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <parent>
+    <groupId>org.scriptkitty</groupId>
+    <artifactId>docker-maven-test</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <name>issue-66</name>
+
+  <artifactId>issue-66</artifactId>
+  <packaging>pom</packaging>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.jolokia</groupId>
+        <artifactId>docker-maven-plugin</artifactId>
+        <configuration>
+          <images>
+            <image>
+              <name>busybox:latest</name>
+              <alias>issue-48-named</alias>
+              <run>
+                <command>ping google.com</command>
+                <namingScheme>alias</namingScheme>
+              </run>
+            </image>
+            <image>
+              <name>busybox:latest</name>
+              <run>
+                <command>ping google.com</command>
+              </run>
+            </image>
+          </images>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
