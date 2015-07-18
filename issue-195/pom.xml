@@ -121,7 +121,6 @@
           <plugin>
             <groupId>org.jolokia</groupId>
             <artifactId>docker-maven-plugin</artifactId>
-            <version>0.13.1-SNAPSHOT</version>
             <configuration>
               <images>
                 <image>
