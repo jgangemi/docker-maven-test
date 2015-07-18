@@ -1,0 +1,88 @@
+<project
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <parent>
+    <groupId>org.scriptkitty</groupId>
+    <artifactId>docker-maven-test</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <name>issue-207</name>
+
+  <artifactId>issue-207</artifactId>
+  <packaging>pom</packaging>
+
+  <properties>
+    <postgres.mode>both</postgres.mode>
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.jolokia</groupId>
+        <artifactId>docker-maven-plugin</artifactId>
+        <configuration>
+          <images>
+            <image>
+              <name>postgres:9.3</name>
+              <alias>issue-207-postgres-dflt</alias>
+              <mode>${postgres.mode}</mode>
+              <!-- <build> <assembly> <descriptorRef>project</descriptorRef> </assembly> </build> -->
+              <run>
+                <env>
+                  <POSTGRES_USER>postgres</POSTGRES_USER>
+                  <POSTGRES_PASSWORD>postgres</POSTGRES_PASSWORD>
+                </env>
+                <wait>
+                  <log>database system is ready to accept connections</log>
+                </wait>
+                <namingStrategy>alias</namingStrategy>
+              </run>
+            </image>
+          </images>
+        </configuration>
+
+      </plugin>
+    </plugins>
+  </build>
+
+  <profiles>
+    <profile>
+      <id>skip</id>
+      <properties>
+        <postgres.mode>skip</postgres.mode>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.jolokia</groupId>
+            <artifactId>docker-maven-plugin</artifactId>
+            <configuration>
+              <images combine.children="append">
+                <image>
+                  <name>postgres:9.3</name>
+                  <alias>issue-207-postgres-skip</alias>
+                  <run>
+                    <env>
+                      <POSTGRES_USER>postgres</POSTGRES_USER>
+                      <POSTGRES_PASSWORD>postgres</POSTGRES_PASSWORD>
+                    </env>
+                    <wait>
+                      <log>database system is ready to accept connections</log>
+                    </wait>
+                    <namingStrategy>alias</namingStrategy>
+                  </run>
+                </image>
+              </images>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
+</project>
