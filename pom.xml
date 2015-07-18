@@ -15,10 +15,11 @@
     <module>issue-66</module>
     <module>issue-82</module>
     <module>issue-195</module>
+    <module>issue-90</module>
   </modules>
 
   <properties>
-    <docker.maven.version>0.13.2-SNAPSHOT</docker.maven.version>
+    <docker.maven.version>0.13.3-SNAPSHOT</docker.maven.version>
   </properties>
 
   <build>

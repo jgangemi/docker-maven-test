@@ -1,0 +1,128 @@
+<project
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <parent>
+    <groupId>org.scriptkitty</groupId>
+    <artifactId>docker-maven-test</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <name>issue-90</name>
+
+  <artifactId>issue-90</artifactId>
+  <packaging>pom</packaging>
+
+  <profiles>
+    <profile>
+      <id>dflt</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.jolokia</groupId>
+            <artifactId>docker-maven-plugin</artifactId>
+            <configuration>
+              <images>
+                <image>
+                  <name>postgres:9.3</name>
+                  <alias>issue-90-postgres</alias>
+                  <run>
+                    <env>
+                      <POSTGRES_USER>postgres</POSTGRES_USER>
+                      <POSTGRES_PASSWORD>postgres</POSTGRES_PASSWORD>
+                    </env>
+                    <ports>
+                      <port>issue-90.port:5432</port>
+                    </ports>
+                    <wait>
+                      <log>database system is ready to accept connections</log>
+                    </wait>
+                    <portPropertyFile>/tmp/issue-90-image.properties</portPropertyFile>
+                    <namingStrategy>alias</namingStrategy>
+                  </run>
+                </image>
+              </images>
+            </configuration>
+
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>global</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.jolokia</groupId>
+            <artifactId>docker-maven-plugin</artifactId>
+            <configuration>
+              <portPropertyFile>/tmp/issue-90-global.properties</portPropertyFile>
+              <images>
+                <image>
+                  <name>postgres:9.3</name>
+                  <alias>issue-90-postgres</alias>
+                  <run>
+                    <env>
+                      <POSTGRES_USER>postgres</POSTGRES_USER>
+                      <POSTGRES_PASSWORD>postgres</POSTGRES_PASSWORD>
+                    </env>
+                    <ports>
+                      <port>issue-90.port:5432</port>
+                    </ports>
+                    <wait>
+                      <log>database system is ready to accept connections</log>
+                    </wait>
+                    <namingStrategy>alias</namingStrategy>
+                  </run>
+                </image>
+              </images>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>both</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.jolokia</groupId>
+            <artifactId>docker-maven-plugin</artifactId>
+            <configuration>
+              <portPropertyFile>/tmp/issue-90-global-both.properties</portPropertyFile>
+              <images>
+                <image>
+                  <name>postgres:9.3</name>
+                  <alias>issue-90-postgres</alias>
+                  <run>
+                    <env>
+                      <POSTGRES_USER>postgres</POSTGRES_USER>
+                      <POSTGRES_PASSWORD>postgres</POSTGRES_PASSWORD>
+                    </env>
+                    <ports>
+                      <port>issue-90.port:5432</port>
+                    </ports>
+                    <wait>
+                      <log>database system is ready to accept connections</log>
+                    </wait>
+                    <portPropertyFile>/tmp/issue-90-image-both.properties</portPropertyFile>
+                    <namingStrategy>alias</namingStrategy>
+                  </run>
+                </image>
+              </images>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
+</project>
