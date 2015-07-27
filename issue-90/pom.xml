@@ -16,6 +16,29 @@
   <artifactId>issue-90</artifactId>
   <packaging>pom</packaging>
 
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.jolokia</groupId>
+        <artifactId>docker-maven-plugin</artifactId>
+        <configuration>
+          <images combine.children="append">
+            <image>
+              <name>nginx:latest</name>
+              <alias>issue-90-nginx</alias>
+              <run>
+                <ports>
+                  <port>issue-90-nginx.ip+issue-90-nginx.port:80</port>
+                </ports>
+                <namingStrategy>alias</namingStrategy>
+              </run>
+            </image>
+          </images>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
   <profiles>
     <profile>
       <id>dflt</id>
@@ -38,7 +61,7 @@
                       <POSTGRES_PASSWORD>postgres</POSTGRES_PASSWORD>
                     </env>
                     <ports>
-                      <port>issue-90.port:5432</port>
+                      <port>issue-90.port-postgres:5432</port>
                     </ports>
                     <wait>
                       <log>database system is ready to accept connections</log>
@@ -49,7 +72,6 @@
                 </image>
               </images>
             </configuration>
-
           </plugin>
         </plugins>
       </build>
@@ -74,7 +96,7 @@
                       <POSTGRES_PASSWORD>postgres</POSTGRES_PASSWORD>
                     </env>
                     <ports>
-                      <port>issue-90.port:5432</port>
+                      <port>issue-90.port-postgres:5432</port>
                     </ports>
                     <wait>
                       <log>database system is ready to accept connections</log>
@@ -108,7 +130,7 @@
                       <POSTGRES_PASSWORD>postgres</POSTGRES_PASSWORD>
                     </env>
                     <ports>
-                      <port>issue-90.port:5432</port>
+                      <port>issue-90.port-postgres:5432</port>
                     </ports>
                     <wait>
                       <log>database system is ready to accept connections</log>
