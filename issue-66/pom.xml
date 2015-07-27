@@ -44,6 +44,11 @@
                 </ports>
               </build>
             </image>
+            <image>
+              <alias>issue-214-empty-build</alias>
+              <name>issue-214-empty-build</name>
+              <build></build>
+            </image>
           </images>
         </configuration>
       </plugin>
