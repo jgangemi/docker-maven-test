@@ -17,6 +17,7 @@
     <module>issue-195</module>
     <module>issue-90</module>
     <module>issue-207</module>
+    <module>issue-182</module>
   </modules>
 
   <properties>
