@@ -16,6 +16,10 @@
   <artifactId>issue-90</artifactId>
   <packaging>pom</packaging>
 
+  <properties>
+     <dflt.postgres.bind.ip>172.16.116.139</dflt.postgres.bind.ip>
+  </properties>
+
   <build>
     <plugins>
       <plugin>
@@ -28,7 +32,7 @@
               <alias>issue-90-nginx</alias>
               <run>
                 <ports>
-                  <port>issue-90-nginx.ip+issue-90-nginx.port:80</port>
+                  <port>+issue-90-nginx.ip:issue-90-nginx.port:80</port>
                 </ports>
                 <namingStrategy>alias</namingStrategy>
               </run>
@@ -61,7 +65,7 @@
                       <POSTGRES_PASSWORD>postgres</POSTGRES_PASSWORD>
                     </env>
                     <ports>
-                      <port>issue-90.port-postgres:5432</port>
+                      <port>+dflt.postgres.bind.ip:issue-90.port-postgres:5432</port>
                     </ports>
                     <wait>
                       <log>database system is ready to accept connections</log>
