@@ -1,0 +1,52 @@
+<project
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.scriptkitty</groupId>
+    <artifactId>docker-maven-test</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>issue-87-parent</artifactId>
+
+  <packaging>pom</packaging>
+
+  <modules>
+    <module>postgres-1</module>
+    <module>postgres-2</module>
+  </modules>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.jolokia</groupId>
+          <artifactId>docker-maven-plugin</artifactId>
+          <version>${docker.maven.version}</version>
+          <configuration>
+            <images>
+              <image>
+                <name>postgres:9.3</name>
+                <alias>${project.name}</alias>
+                <run>
+                  <env>
+                    <POSTGRES_USER>postgres</POSTGRES_USER>
+                    <POSTGRES_PASSWORD>postgres</POSTGRES_PASSWORD>
+                  </env>
+                  <wait>
+                    <log>database system is ready to accept connections</log>
+                  </wait>
+                </run>
+              </image>
+            </images>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+</project>
