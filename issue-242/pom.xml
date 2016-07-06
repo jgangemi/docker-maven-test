@@ -20,7 +20,7 @@
   <build>
     <plugins>
       <plugin>
-        <groupId>org.jolokia</groupId>
+        <groupId>io.fabric8</groupId>
         <artifactId>docker-maven-plugin</artifactId>
         <configuration>
           <images>
@@ -28,7 +28,7 @@
               <alias>mongodb</alias>
               <name>mongo:3.1</name>
               <run>
-                <!-- 
+                <!--
                 <wait>
                   <log>database system is ready to accept connections</log>
                   <time>20000</time>

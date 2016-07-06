@@ -12,23 +12,27 @@
   <packaging>pom</packaging>
 
   <modules>
+    <module>issue-182</module>
+    <module>issue-195</module>
+    <module>issue-207</module>
+    <module>issue-242</module>
+    <module>issue-48</module>
+    <module>issue-57</module>
     <module>issue-66</module>
     <module>issue-82</module>
-    <module>issue-195</module>
+    <module>issue-87</module>
     <module>issue-90</module>
-    <module>issue-207</module>
-    <module>issue-182</module>
   </modules>
 
   <properties>
-    <docker.maven.version>0.13.3-SNAPSHOT</docker.maven.version>
+    <docker.maven.version>0.15-SNAPSHOT</docker.maven.version>
   </properties>
 
   <build>
     <pluginManagement>
       <plugins>
         <plugin>
-          <groupId>org.jolokia</groupId>
+          <groupId>io.fabric8</groupId>
           <artifactId>docker-maven-plugin</artifactId>
           <version>${docker.maven.version}</version>
           <executions>

@@ -11,15 +11,15 @@
 
   <modelVersion>4.0.0</modelVersion>
 
-  <name>issue-66</name>
+  <name>issue-48</name>
 
-  <artifactId>issue-66</artifactId>
+  <artifactId>issue-48</artifactId>
   <packaging>pom</packaging>
 
   <build>
     <plugins>
       <plugin>
-        <groupId>org.jolokia</groupId>
+        <groupId>io.fabric8</groupId>
         <artifactId>docker-maven-plugin</artifactId>
         <configuration>
           <images>

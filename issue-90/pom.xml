@@ -23,7 +23,7 @@
   <build>
     <plugins>
       <plugin>
-        <groupId>org.jolokia</groupId>
+        <groupId>io.fabric8</groupId>
         <artifactId>docker-maven-plugin</artifactId>
         <configuration>
           <images combine.children="append">
@@ -52,7 +52,7 @@
       <build>
         <plugins>
           <plugin>
-            <groupId>org.jolokia</groupId>
+            <groupId>io.fabric8</groupId>
             <artifactId>docker-maven-plugin</artifactId>
             <configuration>
               <images>
@@ -86,7 +86,7 @@
       <build>
         <plugins>
           <plugin>
-            <groupId>org.jolokia</groupId>
+            <groupId>io.fabric8</groupId>
             <artifactId>docker-maven-plugin</artifactId>
             <configuration>
               <portPropertyFile>/tmp/issue-90-global.properties</portPropertyFile>
@@ -120,7 +120,7 @@
       <build>
         <plugins>
           <plugin>
-            <groupId>org.jolokia</groupId>
+            <groupId>io.fabric8</groupId>
             <artifactId>docker-maven-plugin</artifactId>
             <configuration>
               <portPropertyFile>/tmp/issue-90-global-both.properties</portPropertyFile>
